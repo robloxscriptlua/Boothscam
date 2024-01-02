@@ -117,7 +117,7 @@ MiscTab:AddButton({
 })
 MiscTab:AddLabel("")
 MiscTab:AddTextbox({
-    Name = "AutoServerHop",
+    Name = "Textbox",
     Default = "default box input",
     TextDisappear = true,
     Callback = function(Value)
@@ -136,6 +136,7 @@ MiscTab:AddTextbox({
 
         local waitTime = tonumber(Value) or 0
 
+        local retryAttempts = 3
         local Next
 
         repeat
@@ -149,18 +150,21 @@ MiscTab:AddTextbox({
                         continue
                     end
 
-                    if waitTime > 0 then
-                        print("Waiting for", waitTime, "seconds before attempting to teleport to the next server...")
-                        wait(waitTime)
-                    end
+                    for attempt = 1, retryAttempts do
+                        if waitTime > 0 then
+                            print("Waiting for", waitTime, "seconds before attempting to teleport to the next server...")
+                            wait(waitTime)
+                        end
 
-                    local success, errorInfo = pcall(TPS.TeleportToPlaceInstance, TPS, _place, v.id, Player)
+                        local success, errorInfo = pcall(TPS.TeleportToPlaceInstance, TPS, _place, v.id, Player)
 
-                    if success then
-                        print("Successfully teleported to server:", v.id)
-                        return
-                    else
-                        print("Failed to teleport to server:", v.id, "Error:", errorInfo)
+                        if success then
+                            print("Successfully teleported to server:", v.id)
+                            return
+                        else
+                            print("Failed to teleport to server:", v.id, "Error:", errorInfo)
+                            wait(1)
+                        end
                     end
                 end
             end
@@ -171,6 +175,7 @@ MiscTab:AddTextbox({
         print("No available servers to teleport.")
     end	  
 })
+
 MiscTab:AddLabel("")
 
 OrionLib:Init()
