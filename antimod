@@ -1,27 +1,31 @@
 local groupIds = {5060810}
 local kickMessage = "A moderator has joined the server."
-local Moderators = {"BuildIntoGames"}
+local targetUsernames = {"BuildIntoGames"}
 
-game.Players.PlayerAdded:Connect(function(player)
-    local function checkGroupMembership()
-        for _, groupId in ipairs(groupIds) do
-            local success, result = pcall(function()
-                return game:GetService("GroupService"):IsInGroup(player.UserId, groupId)
-            end)
+local function checkPlayer(player)
+    for _, groupId in ipairs(groupIds) do
+        local success, result = pcall(function()
+            return game:GetService("GroupService"):IsInGroup(player.UserId, groupId)
+        end)
 
-            if success and result then
-                game.Players.LocalPlayer:Kick(kickMessage)
-                break
-            end
-        end
-
-        for _, username in ipairs(Moderators) do
-            if player.Name == username then
-                game.Players.LocalPlayer:Kick(kickMessage)
-                break
-            end
+        if success and result then
+            game.Players.LocalPlayer:Kick(kickMessage)
+            break
         end
     end
 
-    checkGroupMembership()
+    for _, username in ipairs(targetUsernames) do
+        if player.Name == username then
+            game.Players.LocalPlayer:Kick(kickMessage)
+            break
+        end
+    end
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    checkPlayer(player)
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    checkPlayer(player)
 end)
