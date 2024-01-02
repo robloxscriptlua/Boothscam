@@ -44,7 +44,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Booth
 Tab:AddButton({
     Name = "3",
     Callback = function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-958.966248, 297.602417, -2131.62476, 0.219019756, 0, -0.975720406, -0, 1.00000012, -0, 0.975720525, 0, 0.219019726)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-958.966248, 297.602417, -2131.62476, 0.150196105, 0, -0.988656342, 0, 1.00000012, 0, 0.988656402, 0, 0.15019612)
 game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = isAnchored
 local args = {
     [1] = "19"
