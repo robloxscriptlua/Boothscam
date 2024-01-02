@@ -92,6 +92,7 @@ local args = {
 game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Booths_ClaimBooth"):InvokeServer(unpack(args))
       end    
 })
+Tab:AddLabel("Middle Left Side Booth Slots (coming soon)")
 
 local MiscTab = Window:MakeTab({
     Name = "Misc",
