@@ -3,7 +3,7 @@ local Window = OrionLib:MakeWindow({Name = "Booth Scam", HidePremium = false})
 local isAnchored = true
 
 local Tab = Window:MakeTab({
-    Name = "TP to Booth",
+    Name = "TP to Booth (Part 2)",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
