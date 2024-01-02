@@ -102,11 +102,13 @@ MiscTab:AddTextbox({
 
 local autoserverhop = true
 
-local hopInterval = tonumber("0") or 0
+local hopInterval = 0
 
 local minPlayersToJoin = 20
 
 local Players = game:GetService("Players")
+
+local servers = {}
 
 local function WaitForHopIntervalChange()
     while hopInterval == 0 do
@@ -129,13 +131,11 @@ if autoserverhop then
         local body = jsond(req.Body)
 
         if body and body.data then
-            spawn(function()
-                for _, v in ipairs(body.data) do
-                    if type(v) == 'table' and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.playing >= minPlayersToJoin then
-                        table.insert(servers, 1, v.id)
-                    end
+            for _, v in ipairs(body.data) do
+                if type(v) == 'table' and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.playing >= minPlayersToJoin then
+                    table.insert(servers, 1, v.id)
                 end
-            end)
+            end
 
             if body.nextPageCursor then
                 cursor = body.nextPageCursor
