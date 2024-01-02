@@ -34,7 +34,7 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = isAnchored
 Tab:AddButton({
     Name = "3",
     Callback = function()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-975.900635, 297.602417, -2129.83984, 0.0414078459, 7.06331917e-08, -0.999142349, 1.39758811e-07, 1, 7.64859038e-08, 0.999142349, -1.42806059e-07, 0.0414078459)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-958.966248, 297.602417, -2131.62476, 0.219019756, 0, -0.975720406, -0, 1.00000012, -0, 0.975720525, 0, 0.219019726)
 game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = isAnchored
       end    
 })
