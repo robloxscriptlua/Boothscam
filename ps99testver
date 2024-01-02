@@ -171,6 +171,7 @@ MiscTab:AddTextbox({
             Next = Servers.nextPageCursor
 
         print("No available servers to teleport.")
+        until not Next
     end	  
 })
 
