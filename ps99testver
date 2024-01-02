@@ -18,6 +18,7 @@ Tab:AddButton({
     Name = "1",
     Callback = function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-927.376587, 297.602448, -2142.87378, 0.42347157, -7.21762916e-08, -0.905909359, -5.93791967e-08, 1, -1.07429827e-07, 0.905909359, 9.92856499e-08, 0.42347157)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
       end    
 })
 
