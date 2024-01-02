@@ -115,9 +115,9 @@ MiscTab:AddButton({
         isAnchored = true
       end    
 })
-
+MiscTab:AddLabel("")
 MiscTab:AddTextbox({
-    Name = "AutServerHop",
+    Name = "AutoServerHop",
     Default = "",
     TextDisappear = false,
     Callback = function(Value)
@@ -170,6 +170,7 @@ MiscTab:AddTextbox({
         print("No available servers to teleport.")
     end	  
 })
+MiscTab:AddLabel("")
 
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy() 
