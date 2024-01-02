@@ -69,6 +69,8 @@ local MiscTab = Window:MakeTab({
     PremiumOnly = false
 })
 
+MiscTab:AddLabel("No toggle because yes")
+
 MiscTab:AddButton({
     Name = "Anchor Off",
     Callback = function()
@@ -82,14 +84,6 @@ MiscTab:AddButton({
     Callback = function()
         isAnchored = true
       end    
-})
-
-MiscTab:AddToggle({
-    Name = "Toggle Anchoring",
-    Default = true,
-    Callback = function(Value)
-        isAnchored = Value
-    end
 })
 
 OrionLib:Init()
