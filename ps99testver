@@ -116,64 +116,66 @@ MiscTab:AddButton({
       end    
 })
 MiscTab:AddLabel("")
-MiscTab:AddTextbox({
-    Name = "Textbox",
-    Default = "default box input",
+-- Replace 'YourTab' with the actual reference to your UI tab
+YourTab:AddTextbox({
+    Name = "TeleportTextbox",
+    Default = "Enter wait time",
     TextDisappear = true,
     Callback = function(Value)
-        local Player = game.Players.LocalPlayer    
-        local Http = game:GetService("HttpService")
-        local TPS = game:GetService("TeleportService")
-        local Api = "https://games.roblox.com/v1/games/"
+        local Players = game:GetService("Players")
+        local HttpService = game:GetService("HttpService")
+        local TeleportService = game:GetService("TeleportService")
 
-        local _place, _id = game.PlaceId, game.JobId
-        local _servers = Api.._place.."/servers/Public?sortOrder=Desc&limit=100"
-
-        function ListServers(cursor)
-            local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
-            return Http:JSONDecode(Raw)
+        local function ListServers(placeId, cursor)
+            local apiUrl = "https://games.roblox.com/v1/games/" .. placeId .. "/servers/Public?sortOrder=Desc&limit=100"
+            local rawData = game:HttpGet(apiUrl .. (cursor and "&cursor=" .. cursor or ""))
+            return HttpService:JSONDecode(rawData)
         end
 
-        local waitTime = tonumber(Value) or 0
-
+        local localPlayer = Players.LocalPlayer
+        local placeId = game.PlaceId
+        local jobId = game.JobId
         local retryAttempts = 3
-        local Next
+        local waitTime = tonumber(Value) or 0
+        local nextPageCursor = nil
+
+        localPlayer.PlayerTeleportFailed:Connect(function(message)
+            print("Teleport failed:", message)
+        end)
 
         repeat
-            local Servers = ListServers(Next)
+            local servers = ListServers(placeId, nextPageCursor)
 
-            for i, v in next, Servers.data do
-                if v.playing < v.maxPlayers and v.id ~= _id then
-                    -- New: Skip the wait time if the server is full
-                    if v.playing >= v.maxPlayers then
-                        print("Skipped server:", v.id, "as it is now full.")
-                        continue
+            for _, server in pairs(servers.data) do
+                if server.playing < server.maxPlayers and server.id ~= jobId then
+                    if waitTime > 0 then
+                        print("Waiting for", waitTime, "seconds before attempting to teleport to the next server...")
+                        wait(waitTime)
                     end
 
-                    for attempt = 1, retryAttempts do
-                        if waitTime > 0 then
-                            print("Waiting for", waitTime, "seconds before attempting to teleport to the next server...")
-                            wait(waitTime)
+                    local success, errorInfo = pcall(TeleportService.TeleportToPlaceInstance, TeleportService, placeId, server.id, localPlayer)
+
+                    if success then
+                        print("Successfully teleported to server:", server.id)
+                        return
+                    else
+                        print("Failed to teleport to server:", server.id, "Error:", errorInfo)
+
+                        if string.find(string.lower(errorInfo), "raiseteleportinitfailedevent") then
+                            print("Teleport initialization failed.")
+                            -- Handle the failure accordingly
                         end
 
-                        local success, errorInfo = pcall(TPS.TeleportToPlaceInstance, TPS, _place, v.id, Player)
-
-                        if success then
-                            print("Successfully teleported to server:", v.id)
-                            return
-                        else
-                            print("Failed to teleport to server:", v.id, "Error:", errorInfo)
-                            wait(1)
-                        end
+                        wait(1)
                     end
                 end
             end
 
-            Next = Servers.nextPageCursor
-        until not Next
+            nextPageCursor = servers.nextPageCursor
+        until not nextPageCursor
 
         print("No available servers to teleport.")
-    end	  
+    end
 })
 
 MiscTab:AddLabel("")
