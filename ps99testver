@@ -9,9 +9,9 @@ local Tab = Window:MakeTab({
 })
 OrionLib:MakeNotification({
     Name = "Booth Scam Hub",
-    Content = "Welcome",
+    Content = "Welcome! This is made by chimmiye.",
     Image = "rbxassetid://4483345998",
-    Time = 3
+    Time = 5
 })
 Tab:AddParagraph("Usage","Get one of those ps99 shirts and more updates may come soon unless cyx makes one (also prefferably use alts to avoid main getting banned)")
 Tab:AddLabel("Middle Right Side Booth Slots")
