@@ -89,7 +89,7 @@ MiscTab:AddButton({
 MiscTab:AddTextbox({
     Name = "AutoServerHop(seconds)",
     Default = "0",
-    TextDisappear = false,
+    TextDisappear = true,
     Callback = function(Value)
         local newHopInterval = tonumber(Value)
         if newHopInterval and newHopInterval >= 0 then
