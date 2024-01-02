@@ -116,10 +116,9 @@ MiscTab:AddButton({
       end    
 })
 MiscTab:AddLabel("")
--- Replace 'YourTab' with the actual reference to your UI tab
-YourTab:AddTextbox({
-    Name = "TeleportTextbox",
-    Default = "Enter wait time",
+MiscTab:AddTextbox({
+    Name = "AutoServerHop",
+    Default = "",
     TextDisappear = true,
     Callback = function(Value)
         local Players = game:GetService("Players")
