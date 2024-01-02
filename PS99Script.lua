@@ -120,7 +120,7 @@ MiscTab:AddLabel("")
 MiscTab:AddTextbox({
     Name = "AutoServerHop",
     Default = "",
-    TextDisappear = false,
+    TextDisappear = true,
     Callback = function(Value)
         local Player = game.Players.LocalPlayer    
         local Http = game:GetService("HttpService")
