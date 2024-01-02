@@ -138,9 +138,19 @@ MiscTab:AddTextbox({
         local waitTime = tonumber(Value) or 0
         local nextPageCursor = nil
 
-        localPlayer.PlayerTeleportFailed:Connect(function(message)
+        local function onPlayerTeleportFailed(message)
             print("Teleport failed:", message)
-        end)
+
+            if string.find(string.lower(message), "raiseteleportinitfailedevent") then
+                print("Teleport initialization failed.")
+            end
+        end
+
+        local function connectTeleportFailedEvent()
+            localPlayer.PlayerTeleportFailed:Connect(onPlayerTeleportFailed)
+        end
+
+        connectTeleportFailedEvent()
 
         repeat
             local servers = ListServers(placeId, nextPageCursor)
@@ -160,11 +170,7 @@ MiscTab:AddTextbox({
                     else
                         print("Failed to teleport to server:", server.id, "Error:", errorInfo)
 
-                        if string.find(string.lower(errorInfo), "raiseteleportinitfailedevent") then
-                            print("Teleport initialization failed.")
-                            -- Handle the failure accordingly
-                        end
-
+                        -- Wait for a short duration before retrying
                         wait(1)
                     end
                 end
