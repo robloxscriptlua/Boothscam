@@ -116,7 +116,7 @@ MiscTab:AddButton({
       end    
 })
 MiscTab:AddLabel("")
-mISCTab:AddTextbox({
+MiscTab:AddTextbox({
     Name = "AutoServerHop",
     Default = "",
     TextDisappear = true,
