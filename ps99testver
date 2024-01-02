@@ -84,7 +84,7 @@ MiscTab:AddButton({
       end    
 })
 
-Tab:AddToggle({
+MiscTab:AddToggle({
     Name = "Toggle Anchoring",
     Default = true,
     Callback = function(Value)
