@@ -31,6 +31,11 @@ local function JoinServersWith20PlusPlayers()
     until not Next
 end
 
+local function ServerHop(seconds)
+    wait(seconds)
+    JoinServersWith20PlusPlayers()
+end
+
 local Tab = Window:MakeTab({
     Name = "TP to Booth",
     Icon = "rbxassetid://4483345998",
@@ -118,10 +123,11 @@ MiscTab:AddButton({
 Tab:AddTextbox({
     Name = "AutoServerHop",
     Default = "",
-    TextDisappear = false,
+    TextDisappear = true,
     Callback = function(Value)
-        if Value == "join servers" then
-            JoinServersWith20PlusPlayers()
+        local seconds = tonumber(Value)
+        if seconds and seconds > 0 then
+            ServerHop(seconds)
         end
     end
 })
