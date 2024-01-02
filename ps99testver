@@ -86,7 +86,7 @@ MiscTab:AddButton({
       end    
 })
 
-Tab:AddButton({
+MiscTab:AddButton({
     Name = "Server Hop",
     Callback = function()
         if httprequest then
