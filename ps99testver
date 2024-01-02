@@ -139,7 +139,7 @@ MiscTab:AddTextbox({
         local retryAttempts = 3
         local Next
 
-        while true do
+        repeat
             local Servers = ListServers(Next)
 
             for i, v in next, Servers.data do
