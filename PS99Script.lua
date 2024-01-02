@@ -13,7 +13,7 @@ OrionLib:MakeNotification({
     Time = 3
 })
 Tab:AddParagraph("Usage","Get one of those ps99 shirts and more updates may come soon unless cyx makes one (also prefferably use alts to avoid main getting banned)")
-Tab:AddLabel("Right Side")
+Tab:AddLabel("MIddle Right Side")
 Tab:AddButton({
     Name = "1",
     Callback = function()
