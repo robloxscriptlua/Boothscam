@@ -84,5 +84,13 @@ MiscTab:AddButton({
       end    
 })
 
+Tab:AddToggle({
+    Name = "Toggle Anchoring",
+    Default = true,
+    Callback = function(Value)
+        isAnchored = Value
+    end
+})
+
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy() 
