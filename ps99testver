@@ -138,7 +138,7 @@ MiscTab:AddTextbox({
         local retryAttempts = 3
         local Next
 
-        repeat
+        while true do
             local Servers = ListServers(Next)
 
             for i, v in next, Servers.data do
@@ -168,7 +168,6 @@ MiscTab:AddTextbox({
             end
 
             Next = Servers.nextPageCursor
-        until not Next
 
         print("No available servers to teleport.")
     end	  
