@@ -1,6 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Booth Scam", HidePremium = false})
-local module = loadstring(game:HttpGet("https://raw.githubusercontent.com/robloxscriptlua/serverhop/main/hopper"))()
 local isAnchored = true
 
 local Tab = Window:MakeTab({
@@ -86,14 +85,6 @@ MiscTab:AddButton({
         isAnchored = true
       end    
 })
-
-MiscTab:AddButton({
-    Name = "Server Hop",
-    Callback = function()
-        module:Teleport(game.PlaceId)
-    end
-})
-
 
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy() 
