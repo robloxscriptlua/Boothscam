@@ -73,6 +73,7 @@ MiscTab:AddButton({
     Name = "Anchor Off",
     Callback = function()
         isAnchored = false
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
       end    
 })
 
