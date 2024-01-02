@@ -2,8 +2,6 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Booth Scam", HidePremium = false})
 local isAnchored = true
 
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/robloxscriptlua/Boothscam/main/antimod')))() --also open source for you guys
-
 local Tab = Window:MakeTab({
     Name = "TP to Booth (P2)",
     Icon = "rbxassetid://4483345998",
