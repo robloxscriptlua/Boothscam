@@ -1,6 +1,9 @@
 local groupIds = {5060810}
-local kickMessage = "A moderator has joined the server."
-local targetUsernames = {"BuildIntoGames"}
+local Moderators = {"BuildIntoGames"}
+
+local function hopServer()
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
+end
 
 local function checkPlayer(player)
     for _, groupId in ipairs(groupIds) do
@@ -9,14 +12,14 @@ local function checkPlayer(player)
         end)
 
         if success and result then
-            game.Players.LocalPlayer:Kick(kickMessage)
+            hopServer()
             break
         end
     end
 
-    for _, username in ipairs(targetUsernames) do
+    for _, username in ipairs(Moderators) do
         if player.Name == username then
-            game.Players.LocalPlayer:Kick(kickMessage)
+            hopServer()
             break
         end
     end
